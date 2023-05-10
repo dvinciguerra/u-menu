@@ -67,7 +67,7 @@ loop do
 
   case action[:type]
   when 'command'
-    system "#{action[:execute]} &"
+    system action[:execute]
   when 'link'
     puts "#{pastel.bold('Sure... opening link')} '#{pastel.cyan(action[:execute])}'"
     system "open #{action[:execute]} &"
