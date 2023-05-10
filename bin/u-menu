@@ -5,9 +5,12 @@ require 'tty-prompt'
 
 require 'yaml'
 
-config_path = File.expand_path("#{ENV.fetch('HOME', nil)}/.umenurc.yml", __dir__)
-config_path ||= File.expand_path("#{ENV.fetch('HOME', nil)}/.umenu/umenurc.yml", __dir__)
+paths = [
+  File.expand_path("#{Dir.home}/.umenurc.yml", __dir__),
+  File.expand_path("#{Dir.home}/.umenu/umenurc.yml", __dir__),
+]
 
+config_path = paths.first { |path| File.exist? path }
 config = YAML.load_file(config_path, symbolize_names: true)
 
 pastel = Pastel.new
