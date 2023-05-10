@@ -27,9 +27,9 @@ icons = {
 }
 
 thanks = [
-  "#{pastel.green('Great job! o/')}",
-  "#{pastel.green('See you later! =)')}",
-  "#{pastel.green('Baby bye bye bye...')}",
+  pastel.green('Great job! o/'),
+  pastel.green('See you later! =)'),
+  pastel.green('Baby bye bye bye...'),
   "Bring me #{pastel.green('a cookie')} when you come back!?",
   "Have a nice #{pastel.cyan('day')}! =)",
   "See you later #{pastel.green('olligator')}! =)"
