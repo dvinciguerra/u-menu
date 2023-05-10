@@ -47,7 +47,7 @@ options << {
   name: '{{settings}} Edit Settings',
   type: 'edit',
   value: 'settings',
-  execute: "#{config_path}"
+  execute: config_path
 }
 options = options.sort { |a, b| a[:name] <=> b[:name] }
 
