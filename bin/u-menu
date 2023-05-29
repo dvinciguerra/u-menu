@@ -6,8 +6,6 @@ require 'tty-prompt'
 
 config = Micro::Menu.configurations.load
 colors = Micro::Menu.colors
-prompt = TTY::Prompt.new(prefix: colors.magenta("\uea85 \u00b5menu "), interrupt: :signal)
-
 icons = Micro::Menu.icons.all
 messages = Micro::Menu.messages
 
@@ -18,9 +16,17 @@ trap('INT') do
   exit(0)
 end
 
-action = nil
-title, options = config.values_at(:title, :options)
+title, options, use_icons =
+  config.values_at(:title, :options, :use_icons)
 
+use_icons ||= false
+
+prompt = TTY::Prompt.new(
+  prefix: colors.magenta("#{use_icons ? "\uea85" : ''} u-menu "),
+  interrupt: :signal
+)
+
+# create a default edit settings option
 options << {
   name: '{{settings}} Edit Settings',
   type: 'edit',
@@ -32,10 +38,10 @@ options = options.sort { |a, b| a[:name] <=> b[:name] }
 options.each do |option|
   if option[:name].match(/\{\{(?<icon_name>.*)\}\}/)
     icon_name = Regexp.last_match('icon_name')
-    option[:name].sub!("{{#{icon_name}}}", icons[icon_name])
+    option[:name].sub!("{{#{icon_name}}} ", use_icons ? icons[icon_name] : '')
   else
-    option[:name] = "#{icons['terminal']} #{option[:name]}" if option[:type] == 'command'
-    option[:name] = "#{icons['link']} #{option[:name]}" if option[:type] == 'link'
+    option[:name] = "#{use_icons ? icons['terminal'] : ''} #{option[:name]}" if option[:type] == 'command'
+    option[:name] = "#{use_icons ? icons['link'] : ''} #{option[:name]}" if option[:type] == 'link'
   end
 end
 
