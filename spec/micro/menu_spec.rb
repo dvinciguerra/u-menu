@@ -22,4 +22,10 @@ RSpec.describe Micro::Menu do
       expect(described_class.colors).to eq(Pastel.new)
     end
   end
+
+  describe '.messages' do
+    it 'returns messages module' do
+      expect(described_class.messages).to be(Micro::Menu::Messages)
+    end
+  end
 end
