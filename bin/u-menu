@@ -5,22 +5,15 @@ require_relative '../lib/u-menu'
 require 'tty-prompt'
 
 config = Micro::Menu.configurations.load
-
 colors = Micro::Menu.colors
 prompt = TTY::Prompt.new(prefix: colors.magenta("\uea85 \u00b5menu "), interrupt: :signal)
 
 icons = Micro::Menu.icons.all
-
-thanks = [
-  colors.green('Great job! o/'),
-  colors.green('See you later! =)'),
-  colors.green('Baby bye bye bye...'),
-  "Bring me #{colors.green('a cookie')} when you come back!?",
-  "Have a nice #{colors.cyan('day')}! =)",
-  "See you later #{colors.green('olligator')}! =)"
-]
+messages = Micro::Menu.messages
 
 trap('INT') do
+  thanks = messages.thanks
+
   puts "\n\n#{thanks.sample}"
   exit(0)
 end
