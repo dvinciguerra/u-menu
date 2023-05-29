@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Micro::Menu do
-  it 'has a version number' do
-    expect(Micro::Menu::VERSION).not_to be nil
+  describe 'gem version' do
+    it 'has a version number' do
+      expect(described_class::VERSION).not_to be nil
+    end
+
+    it 'returns a version in valid format (1.22.128)' do
+      expect(described_class::VERSION).to match /^\d{1,2}.\d{1,3}.\d{1,4}$/
+    end
   end
 
   describe '.icons' do
