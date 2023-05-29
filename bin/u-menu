@@ -28,11 +28,9 @@ prompt = TTY::Prompt.new(
 
 # create a default edit settings option
 options << {
-  name: '{{settings}} Edit Settings',
-  type: 'edit',
-  value: 'settings',
-  execute: config[:_path]
+  name: '{{settings}} Edit Settings', type: 'edit', value: 'settings', execute: config[:_path]
 }
+
 options = options.sort { |a, b| a[:name] <=> b[:name] }
 
 options.each do |option|
@@ -45,6 +43,7 @@ options.each do |option|
   end
 end
 
+action = nil
 loop do
   choice = prompt.select(title, options, filter: true)
   action = config[:options].find { |item| item[:value] == choice }
