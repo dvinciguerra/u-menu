@@ -17,4 +17,20 @@ RSpec.describe Micro::Menu::Configurations do
         .with("#{Dir.home}/.umenurc.yml", symbolize_names: true)
     end
   end
+
+  describe '.init' do
+    let(:path) { "../../tmp/#{SecureRandom.uuid}.yml" }
+
+    before do
+      allow(File).to receive(:write)
+    end
+
+    it 'creates a new configuration file' do
+      described_class.init(path)
+
+      expect(File)
+        .to have_received(:write)
+        .with(path, match("---\nversion: 0.1\ntitle: apps\nsettings:\n  editor: 'nvim'\n"))
+    end
+  end
 end
