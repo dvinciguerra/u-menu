@@ -4,6 +4,13 @@ require_relative '../lib/u-menu'
 
 require 'tty-prompt'
 
+command = ARGV.first
+
+if command == 'init'
+  puts "\n\nCreating a simple config file at ``"
+  Micro::Menu.configurations.init
+end
+
 config = Micro::Menu.configurations.load
 colors = Micro::Menu.colors
 icons = Micro::Menu.icons.all
