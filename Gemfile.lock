@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    u-menu (0.6.0)
-      pastel
-      tty-prompt
+    u-menu (0.8.0)
+      pastel (~> 0.8.0)
+      tty-prompt (~> 0.23.1)
 
 GEM
   remote: https://rubygems.org/
