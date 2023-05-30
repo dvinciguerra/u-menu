@@ -6,7 +6,7 @@ RSpec.describe Micro::Menu::Configurations do
   describe '.load' do
     before do
       allow(File).to receive(:exist?).with(described_class::CONFIGURATION_PATHS.first).and_return(true)
-      allow(YAML).to receive(:load_file).and_call_original
+      allow(YAML).to receive(:load_file).and_return({})
     end
 
     it 'calls yaml load_file' do
