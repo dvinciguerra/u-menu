@@ -8,13 +8,16 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
           - '3.2.1'
+          - '3.1.0'
+          - '3.0.0'
+          - '2.7.0'
 
     steps:
     - uses: actions/checkout@v2
@@ -23,8 +26,10 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - name: Run the default task
+
+    - name: Run Specs
       run: bundle exec rake
+
     - name: Create Coverage Artifact
       uses: actions/upload-artifact@v2
       with:

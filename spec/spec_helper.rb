@@ -2,7 +2,15 @@
 
 require 'u-menu'
 
+require 'simplecov'
 require 'securerandom'
+
+SimpleCov.start
+
+SimpleCov.at_exit do
+  puts 'Coverage done'
+  SimpleCov.result.format!
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
