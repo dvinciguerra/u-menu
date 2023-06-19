@@ -62,6 +62,11 @@ loop do
     puts "#{colors.bold('Sure... opening link')} '#{colors.cyan(action[:execute])}'"
     system "open #{action[:execute]} &"
   when 'edit'
+    unless config.dig(:settings, :editor)
+      warn '[error] key `settings > editor` not found into config file.'
+      exit(1)
+    end
+
     puts "#{colors.bold('Sure... opening file')} '#{colors.cyan(action[:execute])}'"
     system "#{config[:settings][:editor]} #{action[:execute]}"
   end
