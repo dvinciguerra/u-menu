@@ -43,7 +43,7 @@ options = options.sort { |a, b| a[:name] <=> b[:name] }
 options.each do |option|
   if option[:name].match(/\{\{(?<icon_name>.*)\}\}/)
     icon_name = Regexp.last_match('icon_name')
-    option[:name].sub!("{{#{icon_name}}} ", use_icons ? icons[icon_name] : '')
+    option[:name].sub!("{{#{icon_name}}}", use_icons ? icons[icon_name] : '')
   else
     option[:name] = "#{use_icons ? icons['terminal'] : ''} #{option[:name]}" if option[:type] == 'command'
     option[:name] = "#{use_icons ? icons['link'] : ''} #{option[:name]}" if option[:type] == 'link'
